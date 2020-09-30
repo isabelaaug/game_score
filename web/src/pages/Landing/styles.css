@@ -1,0 +1,112 @@
+#page-landing {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-in-primary);
+    background: var(--color-primary);
+    font-size: 2rem;
+}
+
+#page-landing-content .container {
+    display: flex;
+    justify-content: center;    
+}
+
+#page-landing .logo-container img {
+    height: 10rem;
+}
+
+#page-landing .hero-image {
+    width: 95%;
+}
+
+#page-landing .logo-container {
+    text-align: center;
+    margin-bottom: 3.2rem;
+    padding:0px 0px 0px 0px;
+}
+
+#page-landing .logo-container h2 {
+    line-height: 4.6rem;
+    margin-top: 2rem;
+}
+
+#page-landing .buttons-container {
+    display: flex;
+    justify-content: center;    
+}
+
+#page-landing .buttons-container a {
+    width: 55rem;
+    height: 10rem;
+    border-radius: 0.8rem;
+    font: 300 2.7rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+    color: var(--color-button-text);
+    transition: background-color 0.2s;
+}
+
+#page-landing .buttons-container a span {
+    padding-right: 15px;
+}
+
+.buttons-container a.landing-page {
+    background: var(--color-secundary);
+    padding-left: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.buttons-container a.landing-page:hover {
+    background: var(--color-secundary-dark);
+}
+
+@media (min-width: 1100px) {
+    #page-landing-content {
+        max-width: 1100px;
+        display: grid;
+        grid-template-rows: 350px 1fr;
+        grid-template-columns: 2fr 2fr;
+        grid-template-areas: 
+            'logo hero'
+            'buttons hero'
+        ;
+    }
+    #page-landing-content .logo-container {
+        grid-area: logo;
+        align-self: left;
+        margin: 0;
+        text-align: left;
+    }
+
+    #page-landing-content .logo-container h2 {
+        text-align: initial;
+        font-size: 3.6rem;
+    }
+
+    #page-landing-content .logo-container img {
+        height: 50%;
+        padding-top: 100px;
+    }
+
+    #page-landing-content .hero-image {
+        grid-area: hero;
+        justify-self: end;
+        justify-content: flex-end;
+        padding-top: 10rem;
+    }
+    #page-landing-content .buttons-container {
+        grid-area: buttons;
+        justify-content: flex-start;
+    }
+
+    #page-landing-content .buttons-container a {
+        font-size: 2.6rem;
+    }
+    
+}
+

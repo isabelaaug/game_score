@@ -1,6 +1,7 @@
 import knex from 'knex'
 import path from 'path'
 
+/** @type {knex} - Definições do banco de dados */
 const db = knex({
     client: 'sqlite3',
     connection: {

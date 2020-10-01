@@ -1,7 +1,37 @@
 import { Request, Response } from 'express'
 import db from '../database/connection'
-
 export default class MatchsController {
+
+    /**
+     * GET - Requisição de consulta na tabela de placares (matchs).
+     *
+     * @param {Request} request
+     * @param {Response} response 
+     * @return {*} - Retorna todos os placares registrados no banco de dados.
+     * @memberof MatchsController
+     */
+    async index(request: Request, response: Response) {
+        const itemsMatchs = await db('matchs').orderBy('match_date')
+        const serializedMatchs = itemsMatchs.map(itemMatch => {
+            return {
+                id: itemMatch.id,
+                match_score: itemMatch.match_score, 
+                match_date: itemMatch.match_date, 
+            }
+        })
+    
+        return response.json(serializedMatchs)
+    }
+
+    /**
+     * POST - Requisição inserção de dados nas tabelas de placares (matchs), 
+     * pontuações (scores) e recordes (records).
+     *
+     * @param {Request} request
+     * @param {Response} response
+     * @return {*} - Insere placar, pontuação mínima, pontuação máxima e recordes no banco de dados.
+     * @memberof MatchsController
+     */
     async create(request: Request, response: Response) {
         
         try {
@@ -109,19 +139,15 @@ export default class MatchsController {
         }
     }
 
-    async index(request: Request, response: Response) {
-        const itemsMatchs = await db('matchs').orderBy('match_date')
-        const serializedMatchs = itemsMatchs.map(itemMatch => {
-            return {
-                id: itemMatch.id,
-                match_score: itemMatch.match_score, 
-                match_date: itemMatch.match_date, 
-            }
-        })
-    
-        return response.json(serializedMatchs)
-    }
-
+    /**
+     * DELETE - Requisição exclusão de dados nas tabelas de placares (matchs), 
+     * pontuações (scores) e recordes (records), utilizando ID da partida como referência.
+     * 
+     * @param {Request} request
+     * @param {Response} response
+     * @return {*} - Exclui placar, pontuação mínima, pontuação máxima e recordes do ID no banco de dados.
+     * @memberof MatchsController
+     */
     async delete(request: Request, response: Response) {
         
         const {

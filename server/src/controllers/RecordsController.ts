@@ -1,7 +1,16 @@
 import { Request, Response } from 'express'
 import db from '../database/connection'
-
 export default class RecordsController {
+
+    /**
+     * GET - Requisição de consulta na tabela de pontuações (scores) e recordes (records).
+     *
+     * @param {Request} request
+     * @param {Response} response 
+     * @return {*} - Retorna pontuação mínima, pontuação máxima, quebra do recorde mínimo e 
+     * quebra do recorde máximo registrados no banco de dados.
+     * @memberof MatchsController
+     */
     async index(request: Request, response: Response) {
 
         try {

@@ -9,6 +9,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+/**
+ * Função que cria da página com tabela de pontações em destaque e quebras de recordes 
+ *
+ * @return {*} - página endereçada como '/records'
+ */
 function RecordsList() {
 
     const [maxScore, setMaxScore] = useState(0);

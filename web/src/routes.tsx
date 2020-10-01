@@ -5,6 +5,11 @@ import RecordsList from './pages/RecordsList'
 import MatchForm from './pages/MatchForm'
 import AllList from './pages/AllList'
 
+/**
+ * Função que define as rotas que serão acessadas no navegador web para visualização de cada página
+ *
+ * @return {*} 
+ */
 function Routes() {
     return (
         <BrowserRouter>

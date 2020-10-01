@@ -9,6 +9,12 @@ interface PageHeaderProps {
     description?: string
 }
 
+/**
+ * Componente com a formatação geral da header
+ *
+ * @param {*} props {props.title, props.description} - Título e descrição (não obrigatória)
+ * @return {*} 
+ */
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
     return (
         <header className="page-header">

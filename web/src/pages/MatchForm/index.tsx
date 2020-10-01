@@ -7,12 +7,22 @@ import warningIcon from '../../assets/images/icons/warning.svg'
 import api from '../../services/api'
 import { format, parseISO } from 'date-fns'
 
+/**
+ * Função de desenvolvimento da página de cadastro de novas partidas 
+ *
+ * @return {*} - página endereçada como '/matchs'
+ */
 function MatchForm() {
 
     const history = useHistory()
     const [matchScore, setMatchScore] = useState('');
     const [matchDate, setMatchDate] = useState('');
 
+    /**
+     * Função que realiza um POST request na API
+     *
+     * @param {FormEvent} e - Dados do formulário da página
+     */
     function handleCreateMatch(e: FormEvent) {
         e.preventDefault()
         console.log(matchDate)

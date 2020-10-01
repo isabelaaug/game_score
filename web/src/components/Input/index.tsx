@@ -6,6 +6,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string
 }
 
+/**
+ * Componente genérico de input React
+ *
+ * @param {*} { label, name, ...rest } - Todas as propriedades de inputs React disponíveis
+ * @return {*}
+ */
 const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
     return (
         <div className="input-block">

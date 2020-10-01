@@ -18,6 +18,11 @@ interface ItemResponse {
     match_date: string,
 }
 
+/**
+ * Função que cria a página com tabela de todas as pontuações registradas
+ *
+ * @return {*} - página endereçada como '/all'
+ */
 function AllList() {
     
     const [dados, setDados] = useState<ItemResponse[]>([]);
@@ -34,10 +39,18 @@ function AllList() {
         handleDeleteMatch(itemDelete)
     }
 
+    /**
+     * Função que reinicia a página
+     */
     function refreshPage() {
         window.location.reload(false);
     }
 
+    /**
+     * Função que realiza um DELETE request na API
+     *
+     * @param {number} id 
+     */
     function handleDeleteMatch(id: number) {
         api.delete('matchs', { 
                 headers: { 'id': id }, 

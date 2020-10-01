@@ -5,6 +5,11 @@ import landingImg from '../../assets/images/capa.png'
 import { Link } from 'react-router-dom'
 import { FaClipboardList, FaPlus, FaRegChartBar } from 'react-icons/fa'
 
+/**
+ * Função de desenvolvimento a página inicial 
+ *
+ * @return {*} - página endereçada como '/'
+ */
 function Landing() {
 
     return (

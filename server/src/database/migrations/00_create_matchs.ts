@@ -12,6 +12,7 @@ export async function up(knex: Knex) {
         table.increments('id').primary();
         table.integer('match_score').notNullable();
         table.date('match_date').notNullable();
+        table.integer('match_victory').notNullable();
     });
 }
 

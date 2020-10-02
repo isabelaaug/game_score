@@ -13,10 +13,10 @@ export async function up(knex: Knex) {
         table.integer('max_record').notNullable();
         table.integer('min_record').notNullable();
 
-        table.integer('score_id')
+        table.integer('match_id')
             .notNullable()
             .references('id')
-            .inTable('scores')
+            .inTable('matchs')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
     });

@@ -16,7 +16,8 @@ export default class MatchsController {
             return {
                 id: itemMatch.id,
                 match_score: itemMatch.match_score, 
-                match_date: itemMatch.match_date, 
+                match_date: itemMatch.match_date,
+                match_victory: itemMatch.match_victory
             }
         })
     
@@ -83,7 +84,8 @@ export default class MatchsController {
 
         const {
             match_score,
-            match_date
+            match_date,
+            match_victory
         } = request.body
 
         const trx = await db.transaction()
@@ -91,7 +93,8 @@ export default class MatchsController {
         try {
             const insertedScore = await trx('matchs').insert({
                 match_score,
-                match_date
+                match_date,
+                match_victory
             })
 
             const match_id = insertedScore[0]
@@ -99,13 +102,11 @@ export default class MatchsController {
             const maxScore = trx('matchs').max('match_score')
             const minScore = trx('matchs').min('match_score')
 
-            const bestScores = await trx('scores').insert({
+            const featuredScores = await trx('scores').insert({
                 match_id,   
                 max_score: maxScore,
                 min_score: minScore,
             })
-
-            const score_id = bestScores[0]
 
             var maxRecord = 0
             var minRecord = 0
@@ -123,7 +124,7 @@ export default class MatchsController {
             }
 
             const totalRecords = await trx('records').insert({  
-                score_id,
+                match_id,
                 max_record: maxRecord,
                 min_record: minRecord,
             })
@@ -159,7 +160,7 @@ export default class MatchsController {
         try {
             const deleteMatch = await trx('matchs').where('id', id).del()
             const deleteScore = await trx('scores').where('match_id', id).del()
-            const deleteRecord = await trx('records').where('score_id', id).del()
+            const deleteRecord = await trx('records').where('match_id', id).del()
 
             await trx.commit()
             return response.status(201).send()

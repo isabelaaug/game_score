@@ -3,17 +3,34 @@ import db from '../database/connection'
 export default class RecordsController {
 
     /**
-     * GET - Requisição de consulta na tabela de pontuações (scores) e recordes (records).
+     * GET - Requisição de consulta na tabela de placares (matchs), pontuações (scores) e recordes (records).
      *
      * @param {Request} request
      * @param {Response} response 
-     * @return {*} - Retorna pontuação mínima, pontuação máxima, quebra do recorde mínimo e 
+     * @return {*} - Retorna o número de partidas e vitória, pontuação mínima, pontuação máxima, quebra do recorde mínimo e 
      * quebra do recorde máximo registrados no banco de dados.
      * @memberof MatchsController
      */
     async index(request: Request, response: Response) {
 
         try {
+
+            const itemsMatchs = await db('matchs').select('*')
+            const serializedMatchs = itemsMatchs.map(itemMatch => {
+                return {
+                    match_total: itemMatch.id,
+                    match_victory: itemMatch.match_victory,  
+                }
+            })
+
+            var matchTotalArray = serializedMatchs.map(item => item.match_total)
+            var matchTotal = matchTotalArray.length
+
+            var matchVictoryArray = serializedMatchs.map(item => item.match_victory)
+            var matchVictory = matchVictoryArray.reduce(function (a, b) {
+                return a + b
+            })
+            
             const itemsScores = await db('scores').select('*')
             const serializedScores = itemsScores.map(itemScore => {
                 return {
@@ -50,7 +67,7 @@ export default class RecordsController {
                 return Math.max(a, b);
             })
 
-            return response.json({ maxScore, minScore, maxRecord, minRecord })
+            return response.json({ matchTotal, matchVictory, maxScore, minScore, maxRecord, minRecord,  })
 
         } catch (err) {
             return response.status(400).json({

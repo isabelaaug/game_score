@@ -16,6 +16,7 @@ interface ItemResponse {
     id: number,
     match_score: number,
     match_date: string,
+    match_result: string,
 }
 
 /**
@@ -26,8 +27,7 @@ interface ItemResponse {
 function AllList() {
     
     const [dados, setDados] = useState<ItemResponse[]>([]);
-    const [itemDelete, setItemDelete] = useState(0);
-    console.log(itemDelete) 
+    const [itemDelete, setItemDelete] = useState(0); 
 
     useEffect(() => {
         api.get<ItemResponse[]>('matchs').then(response => {
@@ -77,10 +77,13 @@ function AllList() {
                             <TableHead >
                                 <TableRow>
                                     <TableCell className="all-table-head" align="center">
-                                        <strong>Data do jogo</strong>
+                                        <strong>Data</strong>
                                     </TableCell>
                                     <TableCell className="all-table-head" align="center">
-                                        <strong>Resultado do jogo</strong>
+                                        <strong>Placar</strong>
+                                    </TableCell>
+                                    <TableCell className="all-table-head" align="center">
+                                        <strong>Resultado</strong>
                                     </TableCell>
                                     <TableCell className="all-trash" align="center">
                                     </TableCell>
@@ -97,6 +100,9 @@ function AllList() {
                                         </TableCell>
                                         <TableCell className="all-table-body" align="center" scope="row">
                                             {row.match_score}
+                                        </TableCell>
+                                        <TableCell className="all-table-body" align="center" scope="row">
+                                            { row.match_result }
                                         </TableCell>
                                         <TableCell className="all-trash" align="center" onClick={(e) => {setItemDelete(row.id)}}>
                                             <FaRegTrashAlt size={15} alignmentBaseline="central" />

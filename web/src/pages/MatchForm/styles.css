@@ -13,7 +13,7 @@
     max-width: 82rem;
     border-radius: 0.8rem;
     margin: -3.2rem auto 3.2rem;
-    padding-top: 6.4rem;
+    padding-top: 4.8rem;
     overflow: hidden;
 }
 
@@ -31,7 +31,12 @@
     justify-content: space-between;
     width: 100%;
     padding-bottom: 1.6rem;
+    padding-top: 1.6rem;
     border-bottom: 1px solid var(--color-line-in-white);
+}
+
+#page-match-form main fieldset span {
+    font: 2rem Archivo;
 }
 
 #page-match-form main footer {
@@ -62,7 +67,7 @@
     border: 0;
     cursor: pointer;
     border-radius: 0.8rem;
-    font: 700 1.6rem "Archivo";
+    font: 700 2rem "Archivo";
     display: flex;
     align-items: center;
     justify-content: center;

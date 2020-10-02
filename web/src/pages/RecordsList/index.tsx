@@ -10,25 +10,28 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 /**
- * Função que cria da página com tabela de pontações em destaque e quebras de recordes 
+ * Função que cria da página com tabela de número de partidas e vitórias, pontações em destaque e quebras de recordes 
  *
  * @return {*} - página endereçada como '/records'
  */
 function RecordsList() {
 
+    const [matchTotal, setMatchTotal] = useState(0);
+    const [matchVictory, setMatchVictory] = useState(0);
     const [maxScore, setMaxScore] = useState(0);
     const [minScore, setMinScore] = useState(0);
     const [maxRecord, setMaxRecord] = useState(0);
-    const [minRecord, setMinRecord] = useState(0);
+    const [minRecord, setMinRecord] = useState(0);    
 
-    
     useEffect(() => {
         api.get('records').then(response => {
-            const { maxScore, minScore, maxRecord, minRecord } = response.data;
+            const { matchTotal, matchVictory, maxScore, minScore, maxRecord, minRecord } = response.data;
+            setMatchTotal(matchTotal)
+            setMatchVictory(matchVictory)
             setMaxScore(maxScore)
             setMinScore(minScore)
             setMaxRecord(maxRecord)
-            setMinRecord(minRecord)
+            setMinRecord(minRecord)  
         })
     }, [])
 
@@ -36,7 +39,7 @@ function RecordsList() {
         <div id="page-records-list" className="container">
             <PageHeader
                 title='Pontuações em destaque'
-                description='Aqui você pode visualizar todos os placares da temporada organizados por data'
+                description='Aqui você pode visualizar os principais resultados dos placares da temporada'
             />
             <main>
                 <fieldset>
@@ -46,18 +49,26 @@ function RecordsList() {
                             <TableBody>
                                 <TableRow>
                                     <TableCell className="records-table-head" align="left">
-                                        Máximo da temporada
+                                        Total de partidas
                                     </TableCell>
                                     <TableCell className="records-table-body" align="center" scope="row">
-                                        <strong>{maxScore}pts</strong>
+                                        <strong>{matchTotal}</strong>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell className="records-table-head" align="left">
-                                        Mínimo da temporada
+                                        Número de vitórias
                                     </TableCell>
                                     <TableCell className="records-table-body" align="center" scope="row">
-                                        <strong>{minScore}pts</strong>
+                                        <strong>{matchVictory}</strong>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="records-table-head" align="left">
+                                        Pontuação máxima da temporada
+                                    </TableCell>
+                                    <TableCell className="records-table-body" align="center" scope="row">
+                                        <strong>{maxScore}pts</strong>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
@@ -66,6 +77,14 @@ function RecordsList() {
                                     </TableCell>
                                     <TableCell className="records-table-body" align="center" scope="row">
                                         <strong>{maxRecord}x</strong>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell className="records-table-head" align="left">
+                                        Pontuação mínima da temporada
+                                    </TableCell>
+                                    <TableCell className="records-table-body" align="center" scope="row">
+                                        <strong>{minScore}pts</strong>
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>

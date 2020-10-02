@@ -19,7 +19,7 @@ export default class RecordsController {
             const serializedMatchs = itemsMatchs.map(itemMatch => {
                 return {
                     match_total: itemMatch.id,
-                    match_victory: itemMatch.match_victory,  
+                    match_victory: itemMatch.match_result,  
                 }
             })
 
@@ -27,9 +27,16 @@ export default class RecordsController {
             var matchTotal = matchTotalArray.length
 
             var matchVictoryArray = serializedMatchs.map(item => item.match_victory)
-            var matchVictory = matchVictoryArray.reduce(function (a, b) {
-                return a + b
-            })
+
+            var count = 0;
+
+            for(var i = 0; i < matchVictoryArray.length; ++i){
+                if(matchVictoryArray[i] === 'Vitória'){
+                    count++; 
+                }          
+            }
+            
+            var matchVictory = count
             
             const itemsScores = await db('scores').select('*')
             const serializedScores = itemsScores.map(itemScore => {

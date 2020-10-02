@@ -17,7 +17,7 @@ export default class MatchsController {
                 id: itemMatch.id,
                 match_score: itemMatch.match_score, 
                 match_date: itemMatch.match_date,
-                match_victory: itemMatch.match_victory
+                match_result: itemMatch.match_result
             }
         })
     
@@ -85,7 +85,7 @@ export default class MatchsController {
         const {
             match_score,
             match_date,
-            match_victory
+            match_result
         } = request.body
 
         const trx = await db.transaction()
@@ -94,7 +94,7 @@ export default class MatchsController {
             const insertedScore = await trx('matchs').insert({
                 match_score,
                 match_date,
-                match_victory
+                match_result
             })
 
             const match_id = insertedScore[0]

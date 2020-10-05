@@ -7,19 +7,20 @@ GAME SCORE :basketball:
 </h1>
 <p align="center">Sua plataforma para registro de placares de basquete.</p>
 
-> Status do Projeto: Em desenvolvimento. :warning: 
+> Status do Projeto: Concluído. :heavy_check_mark:  
 
 ## Descrição do projeto :page_facing_up:
 
 Game Score é um projeto desenvolvido para [Pública - Proway](http://publica.proway.com.br/).<br>
 <p>
 O projeto é um sistema que visa facilitar para atletas de basquete o acompanhamento de seus resultados durante a temporada de jogos.<br>
-Nele é possível cadastrar o placar de todos os jogos de uma temporada e visualizar os resultados em destaques e quebras de recordes.
+Nele é possível cadastrar o placar de todos os jogos e visualizar os resultados em destaques e as quebras de recordes. 
 </p>
 
 ## Funcionalidades :gear:
 
-- Cadastro de placar: pontuação e data do jogo
+- Cadastro de placar: pontuação, data do jogo e resultado da partida (vitória, derrota ou empate)
+- Visualização do número de jogos e vitórias
 - Visualização da pontuação máxima e mínima da temporada
 - Visualização de quantas vezes que os recordes máximo e mínimo foram quebrados
 - Visualização de todos os placares registrados, ordenados por data e com opção de exclusão
